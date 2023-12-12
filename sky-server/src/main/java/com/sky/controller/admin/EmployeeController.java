@@ -119,8 +119,15 @@ public class EmployeeController {
      */
     @PostMapping("/status/{status}")
     @ApiOperation("启用禁用员工")
-    public Result StartOrStop(@PathVariable Integer status,long id){
+    public Result StartOrStop(@PathVariable Integer status,Long id){
         employeeService.startOrStop(status,id);
         return Result.success();
+    }
+
+    @GetMapping("/{id}")
+    @ApiOperation("根据员工id查询")
+    public Result<Employee> getById(@PathVariable Long id){
+       Employee employee = employeeService.getById(id);
+        return Result.success(employee);
     }
 }
